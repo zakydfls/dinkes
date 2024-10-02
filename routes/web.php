@@ -73,6 +73,10 @@ Route::middleware(['auth', 'role:intern'])->group(function () {
     Route::get('/intern/report', [InternController::class, 'create'])->name('intern.report.create');
     Route::post('/intern/report', [InternController::class, 'store'])->name('intern.report.store');
     Route::delete('/intern/report/{id}', [InternController::class, 'destroy'])->name('intern.report.destroy');
+
+    Route::get('/intern/profile', [InternController::class, 'profile'])->name('intern.profile');
+    Route::get('/intern/profile/{user}/edit', [InternController::class, 'editProfile'])->name('intern.profile.edit');
+    Route::put('/intern/profile/{user}', [InternController::class, 'updateProfile'])->name('intern.profile.update');
 });
 
 require __DIR__ . '/auth.php';

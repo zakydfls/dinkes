@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\InternshipReport;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -77,8 +78,40 @@ class InternController extends Controller
         }
     }
 
-    // public function profile()
-    // {
-    //     return view('intern.profile');
-    // }
+    public function profile()
+    {
+        $user = auth()->user();
+
+        return view('intern.profile.index', compact('user'));
+    }
+
+    public function editProfile(User $user)
+    {
+        return view('intern.profile.edit', compact('user'));
+    }
+
+    public function updateProfile(Request $request, User $user)
+    {
+        try {
+            $request->validate([
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'email', 'max:255'],
+                'password' => ['nullable', 'string', 'min:8'],
+                'no_id' => ['required', 'string', 'max:255'],
+                'instansi' => ['required', 'string', 'max:255'],
+            ]);
+
+            $user->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => $request->password ? bcrypt($request->password) : $user->password,
+                'no_id' => $request->no_id,
+                'instansi' => $request->instansi,
+            ]);
+
+            return redirect()->route('intern.profile')->with('success', 'Profile updated successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to update profile: ' . $e->getMessage());
+        }
+    }
 }

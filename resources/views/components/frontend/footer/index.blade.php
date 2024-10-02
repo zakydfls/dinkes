@@ -4,15 +4,13 @@
             <div>
                 <h3 class="text-lg font-bold">Dinas Kesehatan</h3>
                 <p>Provinsi Jawa Tengah</p>
-                <p>Alamat: Jl. XYZ No.123, Semarang, Jawa Tengah</p>
-                <p>Telp: (024) 123-456</p>
+                <p>Jl. Kapten Piere Tendean No.24, Sekayu, Kec. Semarang Tengah, Kota Semarang, Jawa Tengah 50132</p>
+                <p>Telp: (024) 3511351</p>
             </div>
             <div>
                 <ul>
-                    <li><a href="#" class="hover:underline">Home</a></li>
-                    <li><a href="#" class="hover:underline">Layanan</a></li>
-                    <li><a href="#" class="hover:underline">Tentang Kami</a></li>
-                    <li><a href="#" class="hover:underline">Kontak</a></li>
+                    <li><a href="/" class="hover:underline">Home</a></li>
+                    <li><a href="{{ route('persyaratan') }}" class="hover:underline">Persyaratan</a></li>
                 </ul>
             </div>
         </div>

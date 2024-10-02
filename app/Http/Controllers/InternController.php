@@ -76,4 +76,9 @@ class InternController extends Controller
             return redirect()->back()->with('error', 'Failed to delete report: ' . $e->getMessage());
         }
     }
+
+    // public function profile()
+    // {
+    //     return view('intern.profile');
+    // }
 }

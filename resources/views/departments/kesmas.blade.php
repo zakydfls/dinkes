@@ -20,11 +20,10 @@
                         <div class="mt-4">
                             <h4 class="text-xl font-semibold text-red-700">a. Seksi Kesehatan Keluarga dan Gizi</h4>
                             <ul class="list-disc list-inside space-y-2 text-gray-700 mt-2">
-                                <li>Pengelolaan Upaya Kesehatan Ibu dan Anak (Ibu Hamil, Nifas, Menyusui, Anak Baru
-                                    Lahir, Bayi, Balita dan Pra Sekolah)</li>
-                                <li>Pengelolaan Upaya Kesehatan Usia Produktif (Remaja, Kespro, dan Disabilitas)</li>
-                                <li>Pengelolaan Upaya Kesehatan Usia Lanjut</li>
-                                <li>Pengelolaan Upaya Kesehatan Gizi Masyarakat</li>
+                                <li>Kesehatan Ibu dan Anak </li>
+                                <li>Kesehatan Usia Produktif (Remaja, Kespro dan Disabilitas)</li>
+                                <li>Kesehatan Usia Lanjut</li>
+                                <li>Kesehatan Gizi Masyarakat (stunting)</li>
                             </ul>
                         </div>
 
@@ -35,9 +34,7 @@
                             <ul class="list-disc list-inside space-y-2 text-gray-700 mt-2">
                                 <li>Promosi Kesehatan: Penyuluhan melalui berbagai media (pembuatan media edukasi cetak
                                     dan elektronik seperti iklan, dialog interaktif, dan pameran)</li>
-                                <li>Advokasi Program Prioritas Kesehatan</li>
                                 <li>Pemberdayaan Masyarakat</li>
-                                <li>Penggalangan Kemitraan</li>
                             </ul>
                         </div>
 
@@ -46,12 +43,8 @@
                             <h4 class="text-xl font-semibold text-red-700">c. Seksi Kesehatan Lingkungan, Kesehatan
                                 Kerja dan Olahraga</h4>
                             <ul class="list-disc list-inside space-y-2 text-gray-700 mt-2">
-                                <li>Pengelolaan Upaya Kesehatan Kerja dan Olah Raga: Pemeriksaan Pengemudi, Pembinaan
-                                    Kesehatan Olahraga, Kesehatan Kerja Formal dan Informal</li>
-                                <li>Pengelolaan Upaya Kesehatan Lingkungan: Pengelolaan Limbah Fasilitas Pelayanan
-                                    Kesehatan, Pengawasan Kualitas Air Minum, Fasilitasi Kabupaten/Kota Sehat,
-                                    Fasilitasi Jamban Sehat, Fasilitasi Sanitasi Total Berbasis Masyarakat, Fasilitasi
-                                    Tempat Fasilitas Umum Sehat, Fasilitasi Tempat Pengelolaan Pangan Sehat</li>
+                                <li>Kesehatan Kerja dan Olah Raga</li>
+                                <li>Kesehatan Lingkungan </li>
                             </ul>
                         </div>
 

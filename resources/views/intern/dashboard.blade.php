@@ -44,10 +44,13 @@
             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                 @if ($intern->status == 'pending')
                 <span
-                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-700 text-white">Pending</span>
+                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-700 text-white">Pending</span>
                 @elseif ($intern->status == 'approved')
                 <span
                     class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-700 text-white">Approved</span>
+                @elseif ($intern->status == 'rejected')
+                <span
+                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-700 text-white">Rejected</span>
                 @endif
             </td>
             <td class="text-start px-6 py-4 whitespace-no-wrap border-b border-gray-200">

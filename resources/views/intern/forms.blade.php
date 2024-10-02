@@ -5,7 +5,8 @@
                 @csrf
                 @method('POST')
                 <label for="file" class="block text-sm font-semibold text-gray-700">Upload</label>
-                <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-dashed border-gray-300 rounded-md">
+                <div id="drop-area"
+                    class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-dashed border-gray-300 rounded-md">
                     <div class="space-y-1 text-center">
                         <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none"
                             viewBox="0 0 48 48" aria-hidden="true">
@@ -41,9 +42,55 @@
         </div>
     </div>
 </div>
+
 <script>
+    // Handle drag and drop
+    var dropArea = document.getElementById('drop-area');
+
+    // Prevent default drag behaviors
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropArea.addEventListener(eventName, preventDefaults, false);
+    });
+
+    function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    // Highlight the drop area on drag events
+    ['dragenter', 'dragover'].forEach(eventName => {
+        dropArea.addEventListener(eventName, highlight, false);
+    });
+    ['dragleave', 'drop'].forEach(eventName => {
+        dropArea.addEventListener(eventName, unhighlight, false);
+    });
+
+    function highlight() {
+        dropArea.classList.add('border-blue-600');
+    }
+
+    function unhighlight() {
+        dropArea.classList.remove('border-blue-600');
+    }
+
+    // Handle dropped files
+    dropArea.addEventListener('drop', handleDrop, false);
+
+    function handleDrop(e) {
+        var dt = e.dataTransfer;
+        var files = dt.files;
+        handleFiles(files);
+    }
+
+    function handleFiles(files) {
+        document.getElementById('file').files = files;
+        updateFileName(document.getElementById('file'));
+    }
+
     function updateFileName(input) {
-        var fileName = input.files[0].name;
-        document.getElementById('file-name').textContent = fileName;
+        if (input.files.length > 0) {
+            var fileName = input.files[0].name;
+            document.getElementById('file-name').textContent = fileName;
+        }
     }
 </script>

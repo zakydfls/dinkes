@@ -7,6 +7,7 @@ use App\Models\ApplicantData;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use PHPUnit\Metadata\Version\Requirement;
 
 class ApplicantController extends Controller
@@ -41,7 +42,7 @@ class ApplicantController extends Controller
             Log::info('File stored at: ' . $filepath);
 
             ApplicantData::create($data);
-            return redirect('/')->with('message', 'Form submitted successfully.');
+            return redirect()->route('root')->with('success', 'Form submitted successfully.');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors([$e->getMessage()]);
         }
@@ -63,17 +64,25 @@ class ApplicantController extends Controller
             'status' => $request['status']
         ]);
 
-        return redirect()->route('admin.users.index')->with('success', 'Data updated successfully.');
+        return redirect()->route('admin.dashboard')->with('success', 'Data updated successfully.');
+    }
+
+    public function destroy(ApplicantData $applicant)
+    {
+        $applicant->delete();
+        Storage::disk('public')->delete($applicant->filename);
+        return redirect()->back()->with('success', 'Data deleted successfully.');
     }
 
 
     public function generateIntern(ApplicantData $applicant)
     {
         try {
+            // generated password = nama pertama + _dinkes123
             $user = User::create([
                 'name' => $applicant->name,
-                'email' => $applicant->name . @'@dinkes.com',
-                'password' => bcrypt('dinkes123'),
+                'email' => strtolower(explode(' ', trim($applicant->name))[0]) . '@dinkes.com',
+                'password' => bcrypt(strtolower(explode(' ', trim($applicant->name))[0]) . '_dinkes123'),
                 'no_id' => $applicant->nim,
                 'instansi' => $applicant->asal_instansi,
             ]);
@@ -82,8 +91,8 @@ class ApplicantController extends Controller
             if (!empty($applicant->name_2) && !empty($applicant->nim_2)) {
                 $user2 = User::create([
                     'name' => $applicant->name_2,
-                    'email' => $applicant->name_2 . '@dinkes.com',
-                    'password' => bcrypt('dinkes123'),
+                    'email' => strtolower(explode(' ', trim($applicant->name_2))[0]) . '@dinkes.com',
+                    'password' => bcrypt(strtolower(explode(' ', trim($applicant->name_2))[0]) . '_dinkes123'),
                     'no_id' => $applicant->nim_2,
                     'instansi' => $applicant->asal_instansi,
                 ]);
@@ -93,13 +102,15 @@ class ApplicantController extends Controller
             if (!empty($applicant->name_3) && !empty($applicant->nim_3)) {
                 $user3 = User::create([
                     'name' => $applicant->name_3,
-                    'email' => $applicant->name_3 . '@dinkes.com',
-                    'password' => bcrypt('dinkes123'),
+                    'email' => strtolower(explode(' ', trim($applicant->name_3))[0]) . '@dinkes.com',
+                    'password' => bcrypt(strtolower(explode(' ', trim($applicant->name_3))[0]) . '_dinkes123'),
                     'no_id' => $applicant->nim_3,
                     'instansi' => $applicant->asal_instansi,
                 ]);
                 $user3->assignRole('intern');
             }
+
+
 
             return redirect()->back()->with('success', 'User created successfully.');
         } catch (\Exception $e) {

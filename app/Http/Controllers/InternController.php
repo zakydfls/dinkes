@@ -29,7 +29,7 @@ class InternController extends Controller
     {
         try {
             $request->validate([
-                'file' => ['required', 'mimes:pdf', 'max:10240']
+                'file' => ['required', 'mimes:pdf,doc,docx', 'max:20240']
             ]);
 
             // Get the file from the request
@@ -39,7 +39,7 @@ class InternController extends Controller
             }
 
             // Generate a unique name for the file
-            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $filename = date('YmdHis') . '.' . $file->getClientOriginalName();
 
             // Store the file in the storage directory
             $filepath = $file->storeAs('public/intern_reports', $filename);
@@ -54,7 +54,7 @@ class InternController extends Controller
             // Redirect to the dashboard with a success message
             return redirect()->route('intern.dashboard')->with('success', 'Internship report submitted successfully.');
         } catch (\Exception $e) {
-            return redirect()->route('intern.dashboard')->with('error', 'Failed to upload: ' . $e->getMessage());
+            return redirect()->route('intern.dashboard')->with('error', 'Failed to upload: ' . $e);
         }
     }
 

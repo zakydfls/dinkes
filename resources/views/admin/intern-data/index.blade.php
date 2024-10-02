@@ -95,29 +95,29 @@
                     <thead>
                         <tr>
                             <th
-                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                                 Name </th>
                             <th
-                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                                 NIM</th>
                             <th
-                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                                 Instansi</th>
                             <th
-                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                                 Created/Updated At</th>
 
                             <th
-                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                                 File</th>
                             <th
-                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                                 Revision Notes</th>
                             <th
-                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                                 Status</th>
                             <th
-                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                                 Action</th>
                         </tr>
                     </thead>
@@ -135,17 +135,17 @@
                                         <div class="text-sm leading-5 font-medium text-gray-900">{{ $intern->user->name
                                             }}
                                         </div>
-                                        <div class="text-sm leading-5 text-gray-500">{{ $intern->name? : "" }}</div>
                                     </div>
                                 </div>
                             </td>
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <div class="text-sm leading-5 font-medium text-gray-900">{{ $intern->no_id? : "" }}
+                                <div class="text-sm leading-5 font-medium text-gray-900">{{ $intern->user->no_id? : ""
+                                    }}
                                 </div>
                             </td>
 
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <div class="text-sm leading-5 text-gray-900">{{ $intern->instansi }}</div>
+                                <div class="text-sm leading-5 text-gray-900">{{ $intern->user->instansi }}</div>
                             </td>
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                 <div class="text-sm leading-5 text-gray-900">Masuk : {{
@@ -160,8 +160,9 @@
                                     </a></div>
                             </td>
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <div class="text-sm leading-5 font-medium text-gray-900">{{ $intern->revision_notes? :
-                                    "" }}
+                                <div class="text-sm text-center leading-5 font-medium text-gray-900">{{
+                                    $intern->revision_notes? :
+                                    "-" }}
                                 </div>
                             </td>
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
@@ -178,9 +179,15 @@
                             </td>
                             <td
                                 class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium">
-                                <a href="{{ route('intern.data.edit', $intern) }}"
-                                    class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                <a href="#" class="pl-2 text-red-600 hover:text-red-900">Delete</a>
+                                <div class="flex justify-center">
+                                    <a href="{{ route('intern.data.edit', $intern) }}"
+                                        class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                    <form action="{{ route('intern.data.destroy', $intern) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="pl-2 text-red-600 hover:text-red-900">Delete</button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                         @endforeach

@@ -21,15 +21,7 @@
                             <h4 class="text-xl font-semibold text-red-700">a. Seksi Surveilans dan Imunisasi</h4>
                             <ul class="list-disc list-inside space-y-2 text-gray-700 mt-2">
                                 <li>Identifikasi Wilayah Risiko Krisi Kesehatan</li>
-                                <li>Penanganan Krisis Kesehatan</li>
-                                <li>Penanggulangan Krisis Kesehatan Akibat Bencana dan Rapid Health Assessment</li>
-                                <li>Pengendalian dan Penanggulangan KLB/Wabah</li>
-                                <li>Penyelidikan dan Penanggulangan Kejadian Luar Biasa (KLB)</li>
                                 <li>Pengelolaan Program Surveilans dan Imunisasi</li>
-                                <li>Penguatan Surveilans Kesehatan dan Audit KIPI</li>
-                                <li>Verifikasi Sinyal/Penyelidikan Epidemiologi/Pelacakan Kontak Penyakit Berpotensi
-                                    KLB/Wabah/ Penyakit Tidak Lazim/ Investigasi Kasus KIPI, serta PE penyakit menular
-                                    lainnya, PD3I, keracunan makanan</li>
                             </ul>
                         </div>
 

@@ -23,8 +23,7 @@
                             <ul class="list-disc list-inside space-y-2 text-gray-700 mt-2">
                                 <li>Pengelolaan Pelayanan Kesehatan Tradisional, Akupuntur, Asuhan Mandiri dan
                                     Tradisional Lainnya</li>
-                                <li>Penguatan dan Pendampingan Transformasi Layanan Primer</li>
-                                <li>Verifikasi Penilaian Kesesuaian Standar Pelayanan di Puskesmas</li>
+                                <li>Transformasi Layanan Primer</li>
                             </ul>
                         </div>
 
@@ -33,8 +32,8 @@
                             <h4 class="text-xl font-semibold text-red-700">b. Seksi Standarisasi Pelayanan dan Jaminan
                                 Kesehatan</h4>
                             <ul class="list-disc list-inside space-y-2 text-gray-700 mt-2">
-                                <li>Penguatan Transformasi Sistem Pembiayaan Kesehatan</li>
-                                <li>Pembayaran Penerima Bantuan Iuran</li>
+                                <li>Transformasi Sistem Pembiayaan Kesehatan</li>
+                                <li>Standarisasi mutu pelayanan</li>
                             </ul>
                         </div>
 
@@ -42,13 +41,7 @@
                         <div class="mt-6">
                             <h4 class="text-xl font-semibold text-red-700">c. Seksi Pelayanan Kesehatan Rujukan</h4>
                             <ul class="list-disc list-inside space-y-2 text-gray-700 mt-2">
-                                <li>Penguatan PSC 119 di Jawa Tengah</li>
-                                <li>Penguatan Pelayanan Kesehatan pada Krisis Kesehatan</li>
                                 <li>Penguatan Transformasi Layanan Kesehatan</li>
-                                <li>Penerbitan Izin Rumah Sakit Kelas B dan Fasilitas Pelayanan Kesehatan Tingkat Daerah
-                                    Provinsi</li>
-                                <li>Pembinaan Fasilitas Pelayanan Kesehatan</li>
-                                <li>Penguatan Mutu Fasilitas Pelayanan Kesehatan</li>
                             </ul>
                         </div>
 

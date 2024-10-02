@@ -1,14 +1,14 @@
 <x-admin-layout>
     <x-notification />
-    <div class="py-12">
+    {{-- <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("You're logged in as admin!") }}
+                    {{ __("Admin") }}
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     {{-- <h3 class="text-gray-700 text-3xl font-medium">Dashboard</h3>
 
     {{-- <div class="mt-4">
@@ -92,9 +92,9 @@
         </div>
     </div> --}}
 
-    <div class="mt-8">
+    {{-- <div class="mt-8">
 
-    </div>
+    </div> --}}
 
     <div class="flex flex-col mt-8">
         <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
@@ -104,36 +104,48 @@
                     <thead>
                         <tr>
                             <th
-                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-bold text-gray-500 uppercase tracking-wider">
+                            </th>
+                            <th
+                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-bold text-gray-500 uppercase tracking-wider">
                                 Name / Mail</th>
                             <th
-                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-bold text-gray-500 uppercase tracking-wider">
                                 NIM</th>
                             <th
-                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-bold text-gray-500 uppercase tracking-wider">
                                 Phones</th>
                             <th
-                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-bold text-gray-500 uppercase tracking-wider">
                                 Instansi</th>
                             <th
-                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-bold text-gray-500 uppercase tracking-wider">
                                 Periode</th>
                             <th
-                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-bold text-gray-500 uppercase tracking-wider">
                                 File</th>
                             <th
-                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-bold text-gray-500 uppercase tracking-wider">
                                 Status</th>
                             <th
-                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-bold text-gray-500 uppercase tracking-wider">
                                 Action</th>
-                            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50">Send Confirmation</th>
+                            <th
+                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-extrabold text-gray-500 uppercase tracking-wider">
+                                Send Confirmation</th>
                         </tr>
                     </thead>
 
                     <tbody class="bg-white">
-                        @foreach($applicants as $applicant)
+                        @foreach($applicants as $index=>$applicant)
                         <tr>
+                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                <div class="flex items-center">
+                                    <div class="ml-4">
+                                        <div class="text-sm leading-5 font-medium text-gray-900">{{ $index + 1 }}
+                                        </div>
+                                    </div>
+                            </td>
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                 <div class="flex items-center">
                                     <div class="flex-shrink-0 h-10 w-10">
@@ -171,12 +183,27 @@
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                 <div class="text-sm leading-5 text-gray-900">{{ $applicant->asal_instansi }}</div>
                             </td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <div class="text-sm leading-5 text-gray-900">Masuk : {{
-                                    \Carbon\Carbon::parse($applicant->tgl_masuk)->format('d-m-Y') }}</div>
-                                <div class="text-sm leading-5 text-gray-900">Keluar : {{
-                                    \Carbon\Carbon::parse($applicant->tgl_keluar)->format('d-m-Y') }}</div>
+                            <td class="px-6 py-4 whitespace-nowrap border-b border-gray-200">
+                                <div class="flex justify-start space-x-8">
+                                    <!-- Kolom untuk Masuk -->
+                                    <div class="text-center">
+                                        <div class="font-bold">Masuk</div>
+                                        <div class="text-sm leading-5 text-gray-900">
+                                            {{ \Carbon\Carbon::parse($applicant->tgl_masuk)->format('d-m-Y') }}
+                                        </div>
+                                    </div>
+
+                                    <!-- Kolom untuk Keluar -->
+                                    <div class="text-center">
+                                        <div class="font-bold">Keluar</div>
+                                        <div class="text-sm leading-5 text-gray-900">
+                                            {{ \Carbon\Carbon::parse($applicant->tgl_keluar)->format('d-m-Y') }}
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
+
+
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                 <div class="text-sm leading-5 text-gray-900"> <a class="hover:underline text-blue-500"
                                         href="{{ Storage::url($applicant->filename) }}" download>
@@ -198,9 +225,16 @@
                             </td>
                             <td
                                 class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium">
-                                <a href="{{ route('applicants.edit', $applicant) }}"
-                                    class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                <a href="#" class="pl-2 text-red-600 hover:text-red-900">Delete</a>
+                                <div class="flex justify-center">
+                                    <a href="{{ route('applicants.edit', $applicant) }}"
+                                        class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                    <form action="{{ route('applicants.destroy', $applicant) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="pl-2 text-red-600 hover:text-red-900">Delete</button>
+                                    </form>
+                                </div>
                             </td>
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-center">
                                 @if ($applicant->status == 'pending')
@@ -209,8 +243,12 @@
                                 <div class="text-sm leading-5 text-gray-900">
                                     <form action="{{ route('applicants.generate', $applicant) }}" method="POST">
                                         @csrf
-                                        <button>Send Email</button>
+                                        <button type="submit"
+                                            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-2 rounded">
+                                            Send Email
+                                        </button>
                                     </form>
+
                                 </div>
                                 @endif
                             </td>

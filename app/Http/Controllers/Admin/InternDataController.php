@@ -21,11 +21,17 @@ class InternDataController extends Controller
     public function update(Request $request, InternshipReport $intern)
     {
         $request->validate([
-            'revision_notes' => ['required', 'string'],
+            'revision_notes' => ['nullable', 'string'],
             'status' => ['required', 'string'],
         ]);
 
         $intern->update($request->all());
         return redirect()->route('intern.data.index')->with('success', 'Internship report updated successfully.');
+    }
+
+    public function destroy(InternshipReport $intern)
+    {
+        $intern->delete();
+        return redirect()->route('intern.data.index')->with('success', 'Internship report deleted successfully.');
     }
 }

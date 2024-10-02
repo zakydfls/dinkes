@@ -24,31 +24,17 @@
                 <label for="status" class="block text-sm font-medium text-gray-200">Edit Status</label>
                 <select id="status" name="status"
                     class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                    <option value="pending" {{ old('status')=='pending' ? 'selected' : '' }}>Pending</option>
-                    <option value="approved" {{ old('status')=='approved' ? 'selected' : '' }}>Approved</option>
-                    <option value="rejected" {{ old('status')=='rejected' ? 'selected' : '' }}>Rejected</option>
+                    <option value="pending" {{ old('status', $intern->status) == 'pending' ? 'selected' : '' }}>Pending
+                    </option>
+                    <option value="approved" {{ old('status', $intern->status) == 'approved' ? 'selected' : ''
+                        }}>Approved</option>
+                    <option value="rejected" {{ old('status', $intern->status) == 'rejected' ? 'selected' : ''
+                        }}>Rejected</option>
                 </select>
 
                 @error('status')
                 <span class="text-red-600 text-sm">{{ $message }}</span>
                 @enderror
-            </div>
-
-
-            <div class="mb-4">
-                {{-- <label class="block text-sm font-medium text-gray-700 dark:text-gray-200">Roles</label>
-                @foreach($roles as $role)
-                <div class="flex items-center mb-2">
-                    <input type="checkbox" id="role_{{ $role->id }}" name="roles[]" value="{{ $role->id }}" {{
-                        in_array($role->id, old('roles', $intern->roles->pluck('id')->toArray())) ? 'checked' : '' }}
-                    class="mr-2">
-                    <label for="role_{{ $role->id }}" class="text-sm text-gray-900 dark:text-gray-100">{{ $role->name
-                        }}</label>
-                </div>
-                @endforeach
-                @error('roles')
-                <span class="text-red-600 text-sm">{{ $message }}</span>
-                @enderror --}}
             </div>
 
             <div class="flex items-center justify-between">
@@ -63,4 +49,20 @@
             </div>
         </form>
     </div>
+
+    <!-- Tambahkan JavaScript di bawah -->
+    <script>
+        document.getElementById('status').addEventListener('change', function() {
+            var status = this.value;
+            var revisionNotesInput = document.getElementById('revision_notes');
+
+            // Jika status adalah 'approved', kosongkan revision_notes
+            if (status === 'approved') {
+                revisionNotesInput.value = '';
+                revisionNotesInput.setAttribute('readonly', true); // Opsional: Mengunci input jika diinginkan
+            } else {
+                revisionNotesInput.removeAttribute('readonly'); // Membuka kembali jika status bukan 'approved'
+            }
+        });
+    </script>
 </x-admin-layout>

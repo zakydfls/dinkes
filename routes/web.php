@@ -12,7 +12,7 @@ use App\Http\Controllers\InternController;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('root');
 
 Route::get('/dashboard', function () {
     return view('home');
@@ -26,6 +26,15 @@ Route::middleware('auth')->group(function () {
 
 Route::group(['middleware' => ['role:admin']], function () {
     Route::get('/admin', [ApplicantController::class, 'index'])->name('admin.dashboard');
+    Route::get('/applicants/{applicant}/edit', [ApplicantController::class, 'edit'])->name('applicants.edit');
+    Route::put('/applicants/{applicant}/update', [ApplicantController::class, 'update'])->name('applicants.update');
+    Route::post('/applicants/{applicant}/generate', [ApplicantController::class, 'generateIntern'])->name('applicants.generate');
+    Route::delete('/applicants/{applicant}', [ApplicantController::class, 'destroy'])->name('applicants.destroy');
+
+    Route::get('/admin/intern-data', [InternDataController::class, 'index'])->name('intern.data.index');
+    Route::get('/admin/intern-data/{intern}/edit', [InternDataController::class, 'edit'])->name('intern.data.edit');
+    Route::put('/admin/intern-data/{intern}/update', [InternDataController::class, 'update'])->name('intern.data.update');
+    Route::delete('/admin/intern-data/{intern}', [InternDataController::class, 'destroy'])->name('intern.data.destroy');
 
     Route::get('/forms', function () {
         return view('admin.forms');
@@ -58,13 +67,6 @@ Route::get('/bidang/sumber-daya-kesehatan', [DepartmentController::class, 'sumbe
 Route::get('/applicant', [ApplicantController::class, 'index'])->name('applicants.index');
 Route::get('/applicants/upload', [ApplicantController::class, 'create'])->name('applicants.create');
 Route::post('/applicants/upload/post', [ApplicantController::class, 'store'])->name('applicants.store');
-Route::get('/applicants/{applicant}/edit', [ApplicantController::class, 'edit'])->name('applicants.edit');
-Route::put('/applicants/{applicant}/update', [ApplicantController::class, 'update'])->name('applicants.update');
-Route::post('/applicants/{applicant}/generate', [ApplicantController::class, 'generateIntern'])->name('applicants.generate');
-
-Route::get('/admin/intern-data', [InternDataController::class, 'index'])->name('intern.data.index');
-Route::get('/admin/intern-data/{intern}/edit', [InternDataController::class, 'edit'])->name('intern.data.edit');
-Route::put('/admin/intern-data/{intern}/update', [InternDataController::class, 'update'])->name('intern.data.update');
 
 Route::middleware(['auth', 'role:intern'])->group(function () {
     Route::get('/intern/dashboard', [InternController::class, 'index'])->name('intern.dashboard');

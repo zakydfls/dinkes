@@ -19,9 +19,22 @@
 					<x-frontend.navbar.link href="{{ route('persyaratan') }}" :active="request()->is('persyaratan')">
 						PERSYARATAN</x-frontend.navbar.link>
 
+
 					<!-- Dropdown Bidang -->
 					<x-frontend.navbar.dropdown-link :active="request()->is('bidang')">
 					</x-frontend.navbar.dropdown-link>
+					@guest
+					<x-frontend.navbar.link href="{{ route('login') }}">LOGIN</x-frontend.navbar.link>
+					@else
+					<!-- If logged in, show dashboard or other links -->
+					<form action="{{ route('logout') }}" method="POST">
+						@csrf
+						@method('POST')
+						<button type="submit">
+							<x-frontend.navbar.link>LOGOUT</x-frontend.navbar.link>
+						</button>
+					</form>
+					@endguest
 				</div>
 			</div>
 

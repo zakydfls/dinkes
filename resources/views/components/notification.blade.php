@@ -32,3 +32,14 @@
     </div>
 </div>
 @endif
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const notification = document.getElementById('notification');
+        if (notification) {
+            setTimeout(() => {
+                notification.classList.add('opacity-0');
+                setTimeout(() => notification.remove(), 500); // Menghapus elemen setelah animasi selesai
+            }, 3000); // Tampil selama 3 detik
+        }
+    });
+</script>

@@ -7,37 +7,6 @@
         <form action="{{ route('applicants.update', $applicant) }}" method="POST">
             @csrf
             @method('PUT')
-
-            <div class="mb-4">
-                <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Name</label>
-                <input type="text" id="name" name="name" value="{{ old('name', $applicant->name) }}"
-                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
-                    required>
-                @error('name')
-                <span class="text-red-600 text-sm">{{ $message }}</span>
-                @enderror
-            </div>
-
-            <div class="mb-4">
-                <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Email</label>
-                <input type="email" id="email" name="email" value="{{ old('email', $applicant->email) }}"
-                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
-                    required>
-                @error('email')
-                <span class="text-red-600 text-sm">{{ $message }}</span>
-                @enderror
-            </div>
-
-            <div class="mb-4">
-                <label for="password"
-                    class="block text-sm font-medium text-gray-700 dark:text-gray-200">Password</label>
-                <input type="text" id="asal_instansi" name="asal_instansi"
-                    value="{{ old('asal_instansi', $applicant->asal_instansi) }}"
-                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
-                @error('asal_instansi')
-                <span class="text-red-600 text-sm">{{ $message }}</span>
-                @enderror
-            </div>
             <div class="mb-4">
                 <label for="status" class="block text-sm font-medium text-gray-200">Edit Status</label>
                 <select id="status" name="status"

@@ -14,6 +14,7 @@
                     <option value="pending" {{ old('status')=='pending' ? 'selected' : '' }}>Pending</option>
                     <option value="approved" {{ old('status')=='approved' ? 'selected' : '' }}>Approved</option>
                     <option value="dialihkan" {{ old('status')=='dialihkan' ? 'selected' : '' }}>Dialihkan</option>
+                    <option value="ditolak" {{ old('status')=='ditolak' ? 'selected' : '' }}>Ditolak</option>
                 </select>
 
                 @error('status')

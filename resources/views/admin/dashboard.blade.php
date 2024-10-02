@@ -214,13 +214,16 @@
                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                 @if ($applicant->status == 'pending')
                                 <span
-                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-700 text-white">Pending</span>
+                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-700 text-white">Pending</span>
                                 @elseif ($applicant->status == 'approved')
                                 <span
                                     class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-700 text-white">Approved</span>
-                                @else
+                                @elseif ($applicant->status == 'dialihkan')
                                 <span
                                     class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-500 text-white">Dialihkan</span>
+                                @elseif ($applicant->status == 'ditolak')
+                                <span
+                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-700 text-white">Ditolak</span>
                                 @endif
                             </td>
                             <td

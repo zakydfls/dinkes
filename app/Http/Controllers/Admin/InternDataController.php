@@ -20,13 +20,18 @@ class InternDataController extends Controller
 
     public function update(Request $request, InternshipReport $intern)
     {
-        $request->validate([
-            'revision_notes' => ['nullable', 'string'],
-            'status' => ['required', 'string'],
-        ]);
+        try {
+            $request->validate([
+                'isi_link' => ['required', 'boolean'],
+                'status' => ['required', 'string'],
+            ]);
 
-        $intern->update($request->all());
-        return redirect()->route('intern.data.index')->with('success', 'Internship report updated successfully.');
+            $intern->update($request->all());
+            return redirect()->route('intern.data.index')->with('success', 'Internship report updated successfully.');
+        } catch (\Exception $e) {
+            dd($e);
+            return redirect()->back()->withErrors([$e->getMessage()]);
+        }
     }
 
     public function destroy(InternshipReport $intern)

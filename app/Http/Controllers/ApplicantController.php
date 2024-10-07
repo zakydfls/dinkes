@@ -82,7 +82,8 @@ class ApplicantController extends Controller
             $user = User::create([
                 'name' => $applicant->name,
                 'email' => strtolower(explode(' ', trim($applicant->name))[0]) . '@dinkes.com',
-                'password' => bcrypt(strtolower(explode(' ', trim($applicant->name))[0]) . '_dinkes123'),
+                // 'password' => bcrypt(strtolower(explode(' ', trim($applicant->name))[0]) . '_dinkes123'),
+                'password' => $applicant->nim,
                 'no_id' => $applicant->nim,
                 'instansi' => $applicant->asal_instansi,
             ]);
@@ -92,7 +93,8 @@ class ApplicantController extends Controller
                 $user2 = User::create([
                     'name' => $applicant->name_2,
                     'email' => strtolower(explode(' ', trim($applicant->name_2))[0]) . '@dinkes.com',
-                    'password' => bcrypt(strtolower(explode(' ', trim($applicant->name_2))[0]) . '_dinkes123'),
+                    'password' => $applicant->nim_2,
+                    // 'password' => bcrypt(strtolower(explode(' ', trim($applicant->name_2))[0]) . '_dinkes123'),
                     'no_id' => $applicant->nim_2,
                     'instansi' => $applicant->asal_instansi,
                 ]);
@@ -103,7 +105,8 @@ class ApplicantController extends Controller
                 $user3 = User::create([
                     'name' => $applicant->name_3,
                     'email' => strtolower(explode(' ', trim($applicant->name_3))[0]) . '@dinkes.com',
-                    'password' => bcrypt(strtolower(explode(' ', trim($applicant->name_3))[0]) . '_dinkes123'),
+                    'password' => $applicant->nim_3,
+                    // 'password' => bcrypt(strtolower(explode(' ', trim($applicant->name_3))[0]) . '_dinkes123'),
                     'no_id' => $applicant->nim_3,
                     'instansi' => $applicant->asal_instansi,
                 ]);

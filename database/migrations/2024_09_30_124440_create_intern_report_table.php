@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('intern_report', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('filename');
+            $table->string('filename')->nullable();
             $table->string('status')->default('pending');
-            $table->text('revision_notes')->nullable();
+            $table->boolean('isi_link')->default(false);
+            $table->string('file_bukti')->nullable();
             $table->timestamps();
         });
     }

@@ -30,34 +30,40 @@ class InternController extends Controller
     {
         try {
             $request->validate([
-                'file' => ['required', 'mimes:pdf,doc,docx', 'max:20240']
+                'file' => ['required', 'mimes:pdf,doc,docx', 'max:20240'],
+                'file_bukti' => ['required', 'mimes:pdf,jpg,png', 'max:20240']
             ]);
 
-            // Get the file from the request
+            // Get the files from the request
             $file = $request->file('file');
-            if (!$file) {
-                throw new \Exception('File not found in request.');
+            $fileBukti = $request->file('file_bukti');
+
+            if (!$file || !$fileBukti) {
+                throw new \Exception('One or more required files not found in request.');
             }
 
-            // Generate a unique name for the file
-            $filename = date('YmdHis') . '.' . $file->getClientOriginalName();
+            // Generate unique names for the files
+            $filename = date('YmdHis') . '_report.' . $file->getClientOriginalExtension();
+            $filenameBukti = date('YmdHis') . '_bukti.' . $fileBukti->getClientOriginalExtension();
 
-            // Store the file in the storage directory
+            // Store the files in the storage directory
             $filepath = $file->storeAs('public/intern_reports', $filename);
-
+            $filepathBukti = $fileBukti->storeAs('public/intern_reports', $filenameBukti);
 
             // Create a new InternshipReport instance
             $report = InternshipReport::create([
                 'filename' => $filepath,
+                'file_bukti' => $filepathBukti,
                 'user_id' => auth()->id(),
             ]);
 
             // Redirect to the dashboard with a success message
-            return redirect()->route('intern.dashboard')->with('success', 'Internship report submitted successfully.');
+            return redirect()->route('intern.dashboard')->with('success', 'Internship report and supporting document submitted successfully.');
         } catch (\Exception $e) {
-            return redirect()->route('intern.dashboard')->with('error', 'Failed to upload: ' . $e);
+            return redirect()->route('intern.dashboard')->with('error', 'Failed to upload: ' . $e->getMessage());
         }
     }
+
 
     public function destroy($id)
     {
@@ -67,6 +73,7 @@ class InternController extends Controller
 
             // Hapus file dari penyimpanan
             Storage::disk('public')->delete($report->filename);
+            Storage::disk('public')->delete($report->file_bukti);
 
             // Hapus record dari database
             $report->delete();

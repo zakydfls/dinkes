@@ -67,44 +67,69 @@
                             @enderror
                         </div>
                         <div>
-                            <label for="name_2" class="block text-sm font-semibold text-gray-700">Nama Mahasiswa
-                                ke-2</label>
-                            <input type="text" id="name_2" name="name_2"
-                                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 py-3 text-lg"
-                                placeholder="Enter Instansi" value="{{ old('name_2') }}">
-                            @error('name_2')
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                            @enderror
+                            <label for="add_student_2" class="block text-sm font-semibold text-gray-700">Tambah
+                                Mahasiswa ke-2</label>
+                            <select id="add_student_2" name="add_student_2"
+                                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 py-3 text-lg">
+                                <option value="no">Tidak</option>
+                                <option value="yes">Ya</option>
+                            </select>
                         </div>
-                        <div>
-                            <label for="nim_2" class="block text-sm font-semibold text-gray-700">NIM Mahasiswa
-                                ke-2</label>
-                            <input type="text" id="nim_2" name="nim_2"
-                                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 py-3 text-lg"
-                                placeholder="Enter Instansi" value="{{ old('nim_2') }}">
-                            @error('nim_2')
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                            @enderror
+
+                        <div id="student_2_fields" style="display: none;">
+                            <div>
+                                <label for="name_2" class="block text-sm font-semibold text-gray-700">Nama Mahasiswa
+                                    ke-2</label>
+                                <input type="text" id="name_2" name="name_2"
+                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 py-3 text-lg"
+                                    placeholder="Enter Name" value="{{ old('name_2') }}">
+                                @error('name_2')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div>
+                                <label for="nim_2" class="block text-sm font-semibold text-gray-700">NIM Mahasiswa
+                                    ke-2</label>
+                                <input type="text" id="nim_2" name="nim_2"
+                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 py-3 text-lg"
+                                    placeholder="Enter NIM" value="{{ old('nim_2') }}">
+                                @error('nim_2')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
                         </div>
+
                         <div>
-                            <label for="name_3" class="block text-sm font-semibold text-gray-700">Nama Mahasiswa
-                                ke-3</label>
-                            <input type="text" id="name_3" name="name_3"
-                                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 py-3 text-lg"
-                                placeholder="Enter Instansi" value="{{ old('name_3') }}">
-                            @error('name_3')
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                            @enderror
+                            <label for="add_student_3" class="block text-sm font-semibold text-gray-700">Tambah
+                                Mahasiswa ke-3</label>
+                            <select id="add_student_3" name="add_student_3"
+                                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 py-3 text-lg">
+                                <option value="no">Tidak</option>
+                                <option value="yes">Ya</option>
+                            </select>
                         </div>
-                        <div>
-                            <label for="nim_3" class="block text-sm font-semibold text-gray-700">NIM Mahasiswa
-                                ke-3</label>
-                            <input type="text" id="nim_3" name="nim_3"
-                                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 py-3 text-lg"
-                                placeholder="Enter Instansi" value="{{ old('nim_3') }}">
-                            @error('nim_3')
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                            @enderror
+
+                        <div id="student_3_fields" style="display: none;">
+                            <div>
+                                <label for="name_3" class="block text-sm font-semibold text-gray-700">Nama Mahasiswa
+                                    ke-3</label>
+                                <input type="text" id="name_3" name="name_3"
+                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 py-3 text-lg"
+                                    placeholder="Enter Name" value="{{ old('name_3') }}">
+                                @error('name_3')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div>
+                                <label for="nim_3" class="block text-sm font-semibold text-gray-700">NIM Mahasiswa
+                                    ke-3</label>
+                                <input type="text" id="nim_3" name="nim_3"
+                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 py-3 text-lg"
+                                    placeholder="Enter NIM" value="{{ old('nim_3') }}">
+                                @error('nim_3')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
                         </div>
                     </div>
 
@@ -221,5 +246,12 @@ function updateFileName(input) {
         document.getElementById('file-name').textContent = fileName;
     }
 }
+document.getElementById('add_student_2').addEventListener('change', function() {
+          document.getElementById('student_2_fields').style.display = this.value === 'yes' ? 'block' : 'none';
+      });
+
+      document.getElementById('add_student_3').addEventListener('change', function() {
+          document.getElementById('student_3_fields').style.display = this.value === 'yes' ? 'block' : 'none';
+      });
     </script>
 </x-frontend.app-layout>

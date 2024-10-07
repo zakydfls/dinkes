@@ -107,7 +107,7 @@
                     </g>
                 </svg> --}}
                 {{-- <div>{{ Auth::user()->name }}</div> --}}
-                <div>{{ explode(' ', Auth::user()->name)[0] }}</div>
+                <div>{{ Auth::user()->name }}</div>
                 <svg class="w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#545454"
                     stroke-width="0.00024000000000000003">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -128,8 +128,8 @@
                 class="absolute right-0 z-10 w-48 mt-2 overflow-hidden bg-white rounded-md shadow-xl">
                 {{-- <a href="{{ route('profile.edit') }}"
                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Profile</a> --}}
-                <a href="#"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Setting</a>
+                {{-- <a href="#"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Setting</a> --}}
                 {{-- <a href="/login"
                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Logout</a> --}}
 

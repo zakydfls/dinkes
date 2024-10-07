@@ -109,10 +109,13 @@
 
                             <th
                                 class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                File</th>
+                                Laporan</th>
                             <th
                                 class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                Revision Notes</th>
+                                Bukti Survey</th>
+                            <th
+                                class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                Isi Link</th>
                             <th
                                 class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                                 Status</th>
@@ -125,7 +128,7 @@
                     <tbody class="bg-white">
                         @foreach($interns as $intern)
                         <tr>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                            <td class="text-center px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                 <div class="flex items-center">
                                     <div class="flex-shrink-0 h-10 w-10">
                                         <img src="{{ asset('icons/profile.png') }}" alt="">
@@ -138,34 +141,49 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                            <td class="text-center px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                 <div class="text-sm leading-5 font-medium text-gray-900">{{ $intern->user->no_id? : ""
                                     }}
                                 </div>
                             </td>
 
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                            <td class="text-center px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                 <div class="text-sm leading-5 text-gray-900">{{ $intern->user->instansi }}</div>
                             </td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                            <td class="text-center px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                 <div class="text-sm leading-5 text-gray-900">Masuk : {{
                                     \Carbon\Carbon::parse($intern->created_at)->format('d-m-Y') }}</div>
                                 <div class="text-sm leading-5 text-gray-900">Keluar : {{
                                     \Carbon\Carbon::parse($intern->updated_at)->format('d-m-Y') }}</div>
                             </td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                            <td class="text-center px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                 <div class="text-sm leading-5 text-gray-900"> <a class="hover:underline text-blue-500"
                                         href="{{ Storage::url($intern->filename) }}">
                                         Download
                                     </a></div>
                             </td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                <div class="text-sm text-center leading-5 font-medium text-gray-900">{{
-                                    $intern->revision_notes? :
-                                    "-" }}
-                                </div>
+                            <td class="text-center px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                <div class="text-sm leading-5 text-gray-900"> <a class="hover:underline text-blue-500"
+                                        href="{{ Storage::url($intern->file_bukti) }}" download>
+                                        Download
+                                    </a></div>
                             </td>
-                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                            <td class="text-center px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                @if ($intern->isi_link)
+                                <svg class="text-center w-6 h-6 text-green-500" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                @else
+                                <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                                @endif
+                            </td>
+                            <td class="text-center px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                 @if ($intern->status == 'pending')
                                 <span
                                     class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-900 text-white">Pending</span>
@@ -178,7 +196,7 @@
                                 @endif
                             </td>
                             <td
-                                class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium">
+                                class="text-center px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium">
                                 <div class="flex justify-center">
                                     <a href="{{ route('intern.data.edit', $intern) }}"
                                         class="text-indigo-600 hover:text-indigo-900">Edit</a>

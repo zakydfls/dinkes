@@ -218,9 +218,10 @@
                                 @elseif ($applicant->status == 'approved')
                                 <span
                                     class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-700 text-white">Approved</span>
-                                @elseif ($applicant->status == 'dialihkan')
+                                @elseif ($applicant->status == 'dialihkan jadwal')
                                 <span
-                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-500 text-white">Dialihkan</span>
+                                    class="text-center px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-500 text-white">Dialihkan
+                                    Jadwal</span>
                                 @elseif ($applicant->status == 'ditolak')
                                 <span
                                     class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-700 text-white">Ditolak</span>

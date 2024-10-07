@@ -7,19 +7,21 @@
         <form action="{{ route('intern.data.update', $intern) }}" method="POST">
             @csrf
             @method('PUT')
-
             <div class="mb-4">
-                <label for="revision_notes" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Revision
-                    Notes</label>
-                <input type="text" id="revision_notes" name="revision_notes"
-                    value="{{ old('revision_notes', $intern->revision_notes) }}"
-                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
-                    required>
-                @error('revision_notes')
+                <label for="isi_link" class="block text-sm font-medium text-gray-200">Isi Link</label>
+                <select id="isi_link" name="isi_link"
+                    class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <option value="1" {{ old('isi_link', $intern->isi_link) == '1' ? 'selected' : ''
+                        }}>Sudah
+                    </option>
+                    <option value="0" {{ old('isi_link', $intern->isi_link) == '0' ? 'selected' : ''
+                        }}>Belum</option>
+                </select>
+
+                @error('status')
                 <span class="text-red-600 text-sm">{{ $message }}</span>
                 @enderror
             </div>
-
             <div class="mb-4">
                 <label for="status" class="block text-sm font-medium text-gray-200">Edit Status</label>
                 <select id="status" name="status"
@@ -50,19 +52,4 @@
         </form>
     </div>
 
-    <!-- Tambahkan JavaScript di bawah -->
-    <script>
-        document.getElementById('status').addEventListener('change', function() {
-            var status = this.value;
-            var revisionNotesInput = document.getElementById('revision_notes');
-
-            // Jika status adalah 'approved', kosongkan revision_notes
-            if (status === 'approved') {
-                revisionNotesInput.value = '';
-                revisionNotesInput.setAttribute('readonly', true); // Opsional: Mengunci input jika diinginkan
-            } else {
-                revisionNotesInput.removeAttribute('readonly'); // Membuka kembali jika status bukan 'approved'
-            }
-        });
-    </script>
 </x-admin-layout>

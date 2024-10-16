@@ -80,7 +80,8 @@ class ApplicantController extends Controller
     public function generateIntern(ApplicantData $applicant)
     {
         try {
-            // // generated password = nama pertama + _dinkes123
+            // // generated password = nim
+            // // username = nim
             // $user = User::create([
             //     'name' => $applicant->name,
             //     'email' => strtolower(explode(' ', trim($applicant->name))[0]) . '@dinkes.com',
@@ -130,15 +131,14 @@ class ApplicantController extends Controller
                 ],
             ];
 
-            Mail::to('to@gmail.com')->send(new ApplicantMail($mailData));
+            Mail::to($applicant->email)->send(new ApplicantMail($mailData));
+            // Mail::to('to@gmail.com')->send(new ApplicantMail($mailData));
 
-            echo "Mail send successfully !!";
 
-
-            return redirect()->back()->with('success', 'User created successfully.');
+            return redirect()->back()->with('success', 'User created & email send successfully.');
         } catch (\Exception $e) {
-            // return redirect()->back()->with('error', 'Failed to create user / User have been created.');
-            dd($e->getMessage());
+            return redirect()->back()->with('error', 'Failed to create user / User have been created.');
+            // dd($e->getMessage());
         }
     }
 }

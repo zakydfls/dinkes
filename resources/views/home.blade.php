@@ -1,5 +1,5 @@
 <x-frontend.app-layout title="home">
-	<x-notification />
+	<x-notif-modal />
 	<x-slot name="heading">
 		@auth()
 		Welcome back, {{ auth()->user()->name }}

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ApplicantRequest;
+use App\Mail\ApplicantMail;
 use App\Models\ApplicantData;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use PHPUnit\Metadata\Version\Requirement;
 
@@ -78,46 +80,65 @@ class ApplicantController extends Controller
     public function generateIntern(ApplicantData $applicant)
     {
         try {
-            // generated password = nama pertama + _dinkes123
-            $user = User::create([
-                'name' => $applicant->name,
-                'email' => strtolower(explode(' ', trim($applicant->name))[0]) . '@dinkes.com',
-                // 'password' => bcrypt(strtolower(explode(' ', trim($applicant->name))[0]) . '_dinkes123'),
-                'password' => $applicant->nim,
-                'no_id' => $applicant->nim,
+            // // generated password = nama pertama + _dinkes123
+            // $user = User::create([
+            //     'name' => $applicant->name,
+            //     'email' => strtolower(explode(' ', trim($applicant->name))[0]) . '@dinkes.com',
+            //     // 'password' => bcrypt(strtolower(explode(' ', trim($applicant->name))[0]) . '_dinkes123'),
+            //     'password' => $applicant->nim,
+            //     'no_id' => $applicant->nim,
+            //     'instansi' => $applicant->asal_instansi,
+            // ]);
+            // $user->assignRole('intern');
+
+            // if (!empty($applicant->name_2) && !empty($applicant->nim_2)) {
+            //     $user2 = User::create([
+            //         'name' => $applicant->name_2,
+            //         'email' => strtolower(explode(' ', trim($applicant->name_2))[0]) . '@dinkes.com',
+            //         'password' => $applicant->nim_2,
+            //         // 'password' => bcrypt(strtolower(explode(' ', trim($applicant->name_2))[0]) . '_dinkes123'),
+            //         'no_id' => $applicant->nim_2,
+            //         'instansi' => $applicant->asal_instansi,
+            //     ]);
+            //     $user2->assignRole('intern');
+            // }
+
+            // if (!empty($applicant->name_3) && !empty($applicant->nim_3)) {
+            //     $user3 = User::create([
+            //         'name' => $applicant->name_3,
+            //         'email' => strtolower(explode(' ', trim($applicant->name_3))[0]) . '@dinkes.com',
+            //         'password' => $applicant->nim_3,
+            //         // 'password' => bcrypt(strtolower(explode(' ', trim($applicant->name_3))[0]) . '_dinkes123'),
+            //         'no_id' => $applicant->nim_3,
+            //         'instansi' => $applicant->asal_instansi,
+            //     ]);
+            //     $user3->assignRole('intern');
+            // }
+
+            $mailData = [
+                'title' => 'This is Test Mail',
+                'mhs1' => $applicant->name,
+                'mhs2' => $applicant->name_2,
+                'mhs3' => $applicant->name_3,
+                'nim' => $applicant->nim,
+                'nim2' => $applicant->nim_2,
+                'nim3' => $applicant->nim_3,
                 'instansi' => $applicant->asal_instansi,
-            ]);
-            $user->assignRole('intern');
+                'files' => [
+                    public_path('attachments/test_image.jpeg'),
+                    public_path('attachments/test_pdf.pdf'),
+                ],
+            ];
 
-            if (!empty($applicant->name_2) && !empty($applicant->nim_2)) {
-                $user2 = User::create([
-                    'name' => $applicant->name_2,
-                    'email' => strtolower(explode(' ', trim($applicant->name_2))[0]) . '@dinkes.com',
-                    'password' => $applicant->nim_2,
-                    // 'password' => bcrypt(strtolower(explode(' ', trim($applicant->name_2))[0]) . '_dinkes123'),
-                    'no_id' => $applicant->nim_2,
-                    'instansi' => $applicant->asal_instansi,
-                ]);
-                $user2->assignRole('intern');
-            }
+            Mail::to('to@gmail.com')->send(new ApplicantMail($mailData));
 
-            if (!empty($applicant->name_3) && !empty($applicant->nim_3)) {
-                $user3 = User::create([
-                    'name' => $applicant->name_3,
-                    'email' => strtolower(explode(' ', trim($applicant->name_3))[0]) . '@dinkes.com',
-                    'password' => $applicant->nim_3,
-                    // 'password' => bcrypt(strtolower(explode(' ', trim($applicant->name_3))[0]) . '_dinkes123'),
-                    'no_id' => $applicant->nim_3,
-                    'instansi' => $applicant->asal_instansi,
-                ]);
-                $user3->assignRole('intern');
-            }
-
+            echo "Mail send successfully !!";
 
 
             return redirect()->back()->with('success', 'User created successfully.');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Failed to create user / User have been created.');
+            // return redirect()->back()->with('error', 'Failed to create user / User have been created.');
+            dd($e->getMessage());
         }
     }
 }

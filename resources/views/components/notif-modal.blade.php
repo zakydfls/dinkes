@@ -12,7 +12,8 @@
                 </svg>
             </div>
             <h3 class="text-xl leading-6 font-medium text-green-600 mb-3">Berhasil!</h3>
-            <h2>Harap menunggu verifikasi berkas dan email</h2>
+            <h2>Harap menunggu verifikasi berkas dan email pengumuman, mohon untuk cek kotak masuk dan spam email secara
+                berkala</h2>
             @else
             <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-100 mb-6">
                 <svg class="h-10 w-10 text-red-600 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
